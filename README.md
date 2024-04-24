@@ -20,7 +20,7 @@
 - json-server-auth 이용하여 회원가입 구현
 
 ### 실행방법
-- .env 설정
+- .env.local 설정
 ```dotenv
 NEXT_PUBLIC_JSON_SERVER_URL=http://localhost:8000
 ```
