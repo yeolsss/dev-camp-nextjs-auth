@@ -1,31 +1,18 @@
 "use client";
 
 import { AuthHeaderTitle } from "@/components/header/title";
-import SignForm from "@/app/(provider)/(layout)/signup/_components/signForm";
+import SignForm from "../signupForm";
 import { AnimatePresence, motion } from "framer-motion";
 import useSignupStepStore from "@/zustand/stores/signupStepStore";
 import { Progress } from "@/components/ui/progress";
-import {
-  SIGN_UP_EMAIL,
-  SIGN_UP_NAME,
-  SIGN_UP_PASSWORD,
-  SIGN_UP_PASSWORD_CONFIRM,
-  SIGN_UP_PHONE,
-  SIGN_UP_ROLE,
-  SignUpInputConstants,
-} from "@/constants/user.constants";
 import useSignUpForm from "@/hooks/signUpForm";
 import SignupFormButtonGroup from "../signupFormButtons";
+import { stepFields } from "@/validators/signUp/sign.validator";
 
 function SignupPage() {
   const { form, handleOnSubmit } = useSignUpForm();
 
   const currentStep = useSignupStepStore.use.step();
-
-  const stepFields: SignUpInputConstants[][] = [
-    [SIGN_UP_NAME, SIGN_UP_EMAIL, SIGN_UP_PHONE, SIGN_UP_ROLE],
-    [SIGN_UP_PASSWORD, SIGN_UP_PASSWORD_CONFIRM],
-  ];
 
   return (
     <div className="h-[30rem] flex flex-col justify-between relative">
