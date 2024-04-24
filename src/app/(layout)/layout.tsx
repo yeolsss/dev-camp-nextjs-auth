@@ -6,10 +6,10 @@ interface Props {
 
 function RootLayout({ children }: Props) {
   return (
-    <div className="p-5 w-full">
+    <>
       <MainHeader />
       {children}
-    </div>
+    </>
   );
 }
 

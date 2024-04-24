@@ -1,11 +1,17 @@
 "use client";
 
-import useHeaderTitle from "@/hooks/headerTitle";
+import Link from "next/link";
 
-function HeaderTitle() {
-  const titleName = useHeaderTitle();
+interface Props {
+  titleName: string;
+}
 
-  return <h2 className="font-bold text-2xl">{titleName}</h2>;
+function HeaderTitle({ titleName }: Props) {
+  return (
+    <Link href={"/"}>
+      <h2 className="font-bold text-4xl">{titleName}</h2>
+    </Link>
+  );
 }
 
 export default HeaderTitle;
