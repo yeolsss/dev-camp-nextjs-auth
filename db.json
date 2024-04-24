@@ -1,0 +1,46 @@
+{
+  "post": [
+    {
+      "title": "Hello World",
+      "content": "This is my first post!"
+    }
+  ],
+  "users": [
+    {
+      "email": "sdaf@ggg.com",
+      "password": "$2a$10$w4UTfMP53iivmI3.yCsTuegV9lLpnptDo9WItPWk9i2HqpqWRNsLa",
+      "name": "yarn",
+      "phone": "01099999999",
+      "role": "user",
+      "passwordConfirm": "Sakura%006",
+      "id": "79ed4354-cdbe-4cdb-99c4-9b4909eb7b65"
+    },
+    {
+      "email": "asdpfo@asdpfoj.com",
+      "password": "$2a$10$YttHdSAN9vI9eVQ9wmZlQuIf10kz9BMLyN00HYMFZlYkfyVHVYYlC",
+      "name": "asdf",
+      "phone": "01099998888",
+      "role": "admin",
+      "passwordConfirm": "Sakura%006",
+      "id": "b23bdf7b-60a1-4c89-b845-f58c685996c6"
+    },
+    {
+      "email": "asdf@asdf.com",
+      "password": "$2a$10$QZRRCj/1VUGmTD2zOadZdOw6ioQwGkNz6jXtexNxLzd94r97N5tge",
+      "name": "권경열",
+      "phone": "01099998888",
+      "role": "admin",
+      "passwordConfirm": "Sakura%006",
+      "id": "f442c360-2fa6-4164-be18-22a668928d16"
+    },
+    {
+      "email": "asd2f@asdf.com",
+      "password": "$2a$10$LAyDlLqQKG.9RA2M3VsvkehsnPA1USmDOsgeEf0Iryb2Fwa7BP8Be",
+      "name": "캬캬캬",
+      "phone": "01088887777",
+      "role": "admin",
+      "passwordConfirm": "Sakura%006",
+      "id": "057b3714-5f89-4973-9b76-323ac0451d78"
+    }
+  ]
+}

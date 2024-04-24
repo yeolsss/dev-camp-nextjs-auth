@@ -1,5 +1,5 @@
 import { AuthPage } from "@/components/page";
-import SignupPage from "@/app/(layout)/signup/_components/signupPage/SignupPage";
+import SignupPage from "@/app/(provider)/(layout)/signup/_components/signupPage/SignupPage";
 
 function SignUp() {
   return (

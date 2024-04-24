@@ -4,6 +4,7 @@ import { FormSchema } from "@/validators/signUp/sign.validator";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { v4 as uuidv4 } from "uuid";
 import {
   SIGN_UP_EMAIL,
   SIGN_UP_NAME,
@@ -16,8 +17,15 @@ import useSignupStepStore from "@/zustand/stores/signupStepStore";
 import { useCallback, useEffect } from "react";
 import { AUTH_FORM_TOTAL_STEP } from "@/constants/authSignupForm.constants";
 import { toast } from "@/components/ui/use-toast";
+import { UserData } from "@/types/auth.type";
+import { useMutation } from "@tanstack/react-query";
+import { signUp } from "@/api/auth";
+import { useRouter } from "next/navigation";
 
 const useSignUpForm = () => {
+  const mutation = useMutation({ mutationFn: signUp });
+  const router = useRouter();
+
   const currentStep = useSignupStepStore.use.step();
   const setCurrentStep = useSignupStepStore.use.setCurrentStep();
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -55,7 +63,6 @@ const useSignUpForm = () => {
 
       if (result) {
         if (currentStep < AUTH_FORM_TOTAL_STEP - 1) {
-          console.log("currentstep", currentStep);
           setCurrentStep(currentStep + 1);
         } else {
           await form.handleSubmit((data: z.infer<typeof FormSchema>) => {
@@ -69,22 +76,42 @@ const useSignUpForm = () => {
               });
               return;
             }
-            alert(JSON.stringify(data, null, 4));
 
-            form.reset({
-              [SIGN_UP_NAME.id]: "",
-              [SIGN_UP_EMAIL.id]: "",
-              [SIGN_UP_PHONE.id]: "",
-              [SIGN_UP_ROLE.id]: "",
-              [SIGN_UP_PASSWORD.id]: "",
-              [SIGN_UP_PASSWORD_CONFIRM.id]: "",
+            const newUser: UserData = {
+              ...data,
+              id: uuidv4(),
+            };
+
+            mutation.mutate(newUser, {
+              onSuccess: (data) => {
+                form.reset({
+                  [SIGN_UP_NAME.id]: "",
+                  [SIGN_UP_EMAIL.id]: "",
+                  [SIGN_UP_PHONE.id]: "",
+                  [SIGN_UP_ROLE.id]: "",
+                  [SIGN_UP_PASSWORD.id]: "",
+                  [SIGN_UP_PASSWORD_CONFIRM.id]: "",
+                });
+                toast({
+                  title: "회원가입이 완료되었습니다.",
+                  variant: "default",
+                  duration: 2000,
+                });
+                router.push("/", { scroll: false });
+              },
+              onError: (error) => {
+                toast({
+                  title: error.message,
+                  variant: "destructive",
+                  duration: 1000,
+                });
+              },
             });
-            setCurrentStep(0);
           })();
         }
       }
     },
-    [currentStep, setCurrentStep, form],
+    [currentStep, form, setCurrentStep, mutation],
   );
   useEffect(() => {
     return () => {

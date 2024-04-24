@@ -1,7 +1,7 @@
 "use client";
 
 import { Form } from "@/components/ui/form";
-import FormField from "@/app/(layout)/signup/_components/formField/FormField";
+import FormField from "@/app/(provider)/(layout)/signup/_components/formField/FormField";
 import { SignUpInputConstants } from "@/constants/user.constants";
 import { UseFormReturn } from "react-hook-form";
 

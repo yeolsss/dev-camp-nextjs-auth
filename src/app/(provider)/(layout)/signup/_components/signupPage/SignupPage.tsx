@@ -1,7 +1,7 @@
 "use client";
 
 import { AuthHeaderTitle } from "@/components/header/title";
-import SignForm from "@/app/(layout)/signup/_components/signForm";
+import SignForm from "@/app/(provider)/(layout)/signup/_components/signForm";
 import { AnimatePresence, motion } from "framer-motion";
 import useSignupStepStore from "@/zustand/stores/signupStepStore";
 import { Progress } from "@/components/ui/progress";
