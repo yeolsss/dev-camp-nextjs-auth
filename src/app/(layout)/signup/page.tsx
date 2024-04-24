@@ -1,7 +1,12 @@
-import Page from "@/components/page";
+import { AuthPage } from "@/components/page";
+import SignupPage from "@/app/(layout)/signup/_components/signupPage/SignupPage";
 
 function SignUp() {
-  return <Page>signup</Page>;
+  return (
+    <AuthPage>
+      <SignupPage />
+    </AuthPage>
+  );
 }
 
 export default SignUp;

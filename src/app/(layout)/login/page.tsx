@@ -1,7 +1,7 @@
-import Page from "@/components/page";
+import { AuthPage } from "@/components/page";
 
 function Login() {
-  return <Page>Login!</Page>;
+  return <AuthPage>Login!</AuthPage>;
 }
 
 export default Login;
