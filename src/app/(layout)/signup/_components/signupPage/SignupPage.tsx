@@ -45,7 +45,7 @@ function SignupPage() {
           >
             <SignForm
               key="step-0"
-              fields={stepFields[0]}
+              fields={stepFields[currentStep]}
               form={form}
               handleOnSubmit={handleOnSubmit}
             >
@@ -65,7 +65,7 @@ function SignupPage() {
           >
             <SignForm
               key="step-1"
-              fields={stepFields[1]}
+              fields={stepFields[currentStep]}
               form={form}
               handleOnSubmit={handleOnSubmit}
             >
