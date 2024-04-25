@@ -1,7 +1,12 @@
 import { AuthPage } from "@/components/page";
+import LoginPage from "@/app/(provider)/(layout)/login/_components/loginPage";
 
 function Login() {
-  return <AuthPage>Login!</AuthPage>;
+  return (
+    <AuthPage>
+      <LoginPage />
+    </AuthPage>
+  );
 }
 
 export default Login;

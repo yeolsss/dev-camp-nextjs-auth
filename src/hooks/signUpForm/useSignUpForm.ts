@@ -1,6 +1,6 @@
 "use client";
 
-import { FormSchema } from "@/validators/signUp/sign.validator";
+import { SignupFormSchema } from "@/validators/auth/auth.validator";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,20 +16,22 @@ import {
 import useSignupStepStore from "@/zustand/stores/signupStepStore";
 import { useCallback, useEffect } from "react";
 import { AUTH_FORM_TOTAL_STEP } from "@/constants/authSignupForm.constants";
-import { toast } from "@/components/ui/use-toast";
 import { UserData } from "@/types/auth.type";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/auth";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 const useSignUpForm = () => {
+  const { toast } = useToast();
+
   const mutation = useMutation({ mutationFn: signUp });
   const router = useRouter();
 
   const currentStep = useSignupStepStore.use.step();
   const setCurrentStep = useSignupStepStore.use.setCurrentStep();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof SignupFormSchema>>({
+    resolver: zodResolver(SignupFormSchema),
     defaultValues: {
       [SIGN_UP_NAME.id]: "",
       [SIGN_UP_EMAIL.id]: "",
@@ -65,7 +67,7 @@ const useSignUpForm = () => {
         if (currentStep < AUTH_FORM_TOTAL_STEP - 1) {
           setCurrentStep(currentStep + 1);
         } else {
-          await form.handleSubmit((data: z.infer<typeof FormSchema>) => {
+          await form.handleSubmit((data: z.infer<typeof SignupFormSchema>) => {
             if (
               data[SIGN_UP_PASSWORD.id] !== data[SIGN_UP_PASSWORD_CONFIRM.id]
             ) {
@@ -78,12 +80,16 @@ const useSignUpForm = () => {
             }
 
             const newUser: UserData = {
-              ...data,
               id: uuidv4(),
+              name: data[SIGN_UP_NAME.id],
+              email: data[SIGN_UP_EMAIL.id],
+              phone: data[SIGN_UP_PHONE.id],
+              password: data[SIGN_UP_PASSWORD.id],
+              role: data[SIGN_UP_ROLE.id],
             };
 
             mutation.mutate(newUser, {
-              onSuccess: (data) => {
+              onSuccess: () => {
                 form.reset({
                   [SIGN_UP_NAME.id]: "",
                   [SIGN_UP_EMAIL.id]: "",

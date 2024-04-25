@@ -9,15 +9,24 @@ interface Props {
   fields: SignUpInputConstants[];
   form: UseFormReturn<{ [p: string]: string }, any, undefined>;
   handleOnSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  justifyContent?: string;
+  gap?: string;
   children: React.ReactNode;
 }
 
-function SignForm({ fields, form, handleOnSubmit, children }: Props) {
+function AuthForm({
+  fields,
+  form,
+  handleOnSubmit,
+  justifyContent = "justify-between",
+  gap = "gap-5",
+  children,
+}: Props) {
   return (
     <>
       <Form {...form}>
         <form
-          className="flex flex-col gap-5 justify-between h-[400px]"
+          className={`flex flex-col h-[400px] ${gap} ${justifyContent}`}
           onSubmit={handleOnSubmit}
         >
           <section className="flex flex-col gap-5">
@@ -32,4 +41,4 @@ function SignForm({ fields, form, handleOnSubmit, children }: Props) {
   );
 }
 
-export default SignForm;
+export default AuthForm;

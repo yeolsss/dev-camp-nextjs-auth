@@ -1,13 +1,13 @@
 "use client";
 
 import { AuthHeaderTitle } from "@/components/header/title";
-import SignForm from "../signupForm";
+import AuthForm from "../../../../../../components/authForm";
 import { AnimatePresence, motion } from "framer-motion";
 import useSignupStepStore from "@/zustand/stores/signupStepStore";
 import { Progress } from "@/components/ui/progress";
 import useSignUpForm from "@/hooks/signUpForm";
 import SignupFormButtonGroup from "../signupFormButtons";
-import { stepFields } from "@/validators/signUp/sign.validator";
+import { signupStepFields } from "@/validators/auth/auth.validator";
 
 function SignupPage() {
   const { form, handleOnSubmit } = useSignUpForm();
@@ -30,14 +30,14 @@ function SignupPage() {
             transition={{ duration: 0.5 }}
             className="absolute top-16 w-full"
           >
-            <SignForm
+            <AuthForm
               key="step-0"
-              fields={stepFields[currentStep]}
+              fields={signupStepFields[currentStep]}
               form={form}
               handleOnSubmit={handleOnSubmit}
             >
               <SignupFormButtonGroup />
-            </SignForm>
+            </AuthForm>
           </motion.div>
         )}
 
@@ -50,14 +50,14 @@ function SignupPage() {
             transition={{ duration: 0.5 }}
             className="absolute top-16 w-full"
           >
-            <SignForm
+            <AuthForm
               key="step-1"
-              fields={stepFields[currentStep]}
+              fields={signupStepFields[currentStep]}
               form={form}
               handleOnSubmit={handleOnSubmit}
             >
               <SignupFormButtonGroup />
-            </SignForm>
+            </AuthForm>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,11 +1,17 @@
-import ReactQueryProvider from "@/app/(provider)/_components/reactQueryProvider/ReactQueryProvider";
+import { Toaster } from "@/components/ui/toaster";
+import RootProvider from "@/provider/rootProvider";
 
 interface Props {
   children: React.ReactNode;
 }
 
 function Layout({ children }: Props) {
-  return <ReactQueryProvider>{children}</ReactQueryProvider>;
+  return (
+    <RootProvider>
+      {children}
+      <Toaster />
+    </RootProvider>
+  );
 }
 
 export default Layout;
