@@ -10,6 +10,8 @@
 - react-hook-form
 - framer-motion
 - zustand
+- next-auth
+- json-server, json-server-auth
 
 ### 회원가입 페이지
 - 2단계 회원가입 페이지
