@@ -6,12 +6,12 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { v4 as uuidv4 } from "uuid";
 import {
-  SIGN_UP_EMAIL,
-  SIGN_UP_NAME,
-  SIGN_UP_PASSWORD,
-  SIGN_UP_PASSWORD_CONFIRM,
-  SIGN_UP_PHONE,
-  SIGN_UP_ROLE,
+  AUTH_EMAIL,
+  AUTH_NAME,
+  AUTH_PASSWORD,
+  AUTH_PASSWORD_CONFIRM,
+  AUTH_PHONE,
+  AUTH_ROLE,
 } from "@/constants/user.constants";
 import useSignupStepStore from "@/zustand/stores/signupStepStore";
 import { useCallback, useEffect } from "react";
@@ -33,12 +33,12 @@ const useSignUpForm = () => {
   const form = useForm<z.infer<typeof SignupFormSchema>>({
     resolver: zodResolver(SignupFormSchema),
     defaultValues: {
-      [SIGN_UP_NAME.id]: "",
-      [SIGN_UP_EMAIL.id]: "",
-      [SIGN_UP_PHONE.id]: "",
-      [SIGN_UP_ROLE.id]: "",
-      [SIGN_UP_PASSWORD.id]: "",
-      [SIGN_UP_PASSWORD_CONFIRM.id]: "",
+      [AUTH_NAME.id]: "",
+      [AUTH_EMAIL.id]: "",
+      [AUTH_PHONE.id]: "",
+      [AUTH_ROLE.id]: "",
+      [AUTH_PASSWORD.id]: "",
+      [AUTH_PASSWORD_CONFIRM.id]: "",
     },
   });
 
@@ -50,14 +50,14 @@ const useSignUpForm = () => {
       switch (currentStep) {
         case 0:
           fieldsToValidate = [
-            SIGN_UP_NAME.id,
-            SIGN_UP_EMAIL.id,
-            SIGN_UP_PHONE.id,
-            SIGN_UP_ROLE.id,
+            AUTH_NAME.id,
+            AUTH_EMAIL.id,
+            AUTH_PHONE.id,
+            AUTH_ROLE.id,
           ];
           break;
         case 1:
-          fieldsToValidate = [SIGN_UP_PASSWORD.id, SIGN_UP_PASSWORD_CONFIRM.id];
+          fieldsToValidate = [AUTH_PASSWORD.id, AUTH_PASSWORD_CONFIRM.id];
           break;
       }
 
@@ -68,9 +68,7 @@ const useSignUpForm = () => {
           setCurrentStep(currentStep + 1);
         } else {
           await form.handleSubmit((data: z.infer<typeof SignupFormSchema>) => {
-            if (
-              data[SIGN_UP_PASSWORD.id] !== data[SIGN_UP_PASSWORD_CONFIRM.id]
-            ) {
+            if (data[AUTH_PASSWORD.id] !== data[AUTH_PASSWORD_CONFIRM.id]) {
               toast({
                 title: "비밀번호가 일치하지 않습니다.",
                 variant: "destructive",
@@ -81,22 +79,22 @@ const useSignUpForm = () => {
 
             const newUser: UserData = {
               id: uuidv4(),
-              name: data[SIGN_UP_NAME.id],
-              email: data[SIGN_UP_EMAIL.id],
-              phone: data[SIGN_UP_PHONE.id],
-              password: data[SIGN_UP_PASSWORD.id],
-              role: data[SIGN_UP_ROLE.id],
+              name: data[AUTH_NAME.id],
+              email: data[AUTH_EMAIL.id],
+              phone: data[AUTH_PHONE.id],
+              password: data[AUTH_PASSWORD.id],
+              role: data[AUTH_ROLE.id],
             };
 
             mutation.mutate(newUser, {
               onSuccess: () => {
                 form.reset({
-                  [SIGN_UP_NAME.id]: "",
-                  [SIGN_UP_EMAIL.id]: "",
-                  [SIGN_UP_PHONE.id]: "",
-                  [SIGN_UP_ROLE.id]: "",
-                  [SIGN_UP_PASSWORD.id]: "",
-                  [SIGN_UP_PASSWORD_CONFIRM.id]: "",
+                  [AUTH_NAME.id]: "",
+                  [AUTH_EMAIL.id]: "",
+                  [AUTH_PHONE.id]: "",
+                  [AUTH_ROLE.id]: "",
+                  [AUTH_PASSWORD.id]: "",
+                  [AUTH_PASSWORD_CONFIRM.id]: "",
                 });
                 toast({
                   title: "회원가입이 완료되었습니다.",

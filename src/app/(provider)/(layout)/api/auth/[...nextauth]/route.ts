@@ -1,6 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
+import { LINK } from "@/constants/link.constants";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_JSON_SERVER_URL;
 
@@ -46,7 +47,7 @@ const handler: NextAuthOptions = NextAuth({
   },
   // 로그인페이지 설정
   pages: {
-    signIn: "/signin",
+    signIn: LINK.LOG_IN,
   },
 });
 

@@ -15,7 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SIGN_UP_ROLE, SignUpInputConstants } from "@/constants/user.constants";
+import { AUTH_ROLE, SignUpInputConstants } from "@/constants/user.constants";
 
 interface Props {
   id: SignUpInputConstants;
@@ -29,7 +29,7 @@ function FormField({ id }: Props) {
         <FormItem>
           <FormLabel>{id.label}</FormLabel>
           <FormControl>
-            {id.id != SIGN_UP_ROLE.id ? (
+            {id.id != AUTH_ROLE.id ? (
               <Input
                 type={id.inputType}
                 placeholder={id.placeholder}

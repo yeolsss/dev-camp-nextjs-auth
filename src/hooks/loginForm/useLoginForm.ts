@@ -4,13 +4,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { loginFields, LoginFormSchema } from "@/validators/auth/auth.validator";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SIGN_UP_EMAIL, SIGN_UP_PASSWORD } from "@/constants/user.constants";
-import { useToast } from "@/components/ui/use-toast";
+import { AUTH_EMAIL, AUTH_PASSWORD } from "@/constants/user.constants";
 import { signIn } from "next-auth/react";
 
 const useLoginForm = () => {
-  const { toast } = useToast();
-
   const form = useForm<z.infer<typeof LoginFormSchema>>({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
@@ -26,8 +23,8 @@ const useLoginForm = () => {
 
     if (result) {
       await form.handleSubmit((data: z.infer<typeof LoginFormSchema>) => {
-        const email = data[SIGN_UP_EMAIL.id];
-        const password = data[SIGN_UP_PASSWORD.id];
+        const email = data[AUTH_EMAIL.id];
+        const password = data[AUTH_PASSWORD.id];
 
         signIn("credentials", {
           email,
