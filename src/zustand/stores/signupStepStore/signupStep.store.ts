@@ -6,7 +6,7 @@ interface SignupStepState {
 }
 
 interface SignupStepAction {
-  setCurrentStep: (test: SignupStepState["step"]) => void;
+  setCurrentStep: (step: SignupStepState["step"]) => void;
 }
 
 const signupStepStore = create<SignupStepState & SignupStepAction>()((set) => ({
