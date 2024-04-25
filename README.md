@@ -19,13 +19,43 @@
 - 각 필드별 유효성 검사
 - json-server-auth 이용하여 회원가입 구현
 
-### 실행방법
+### 로그인 페이지
+- 이메일, 비밀번호 입력 후 로그인
+- next-auth를 이용하여 로그인 구현
+  - 아직 에러 페이지 처리는 하지 못함 
+
+### 실행 전 설정
+- db.json 파일 생성
+```json
+{
+  "post": [
+    {
+      "title": "Hello World",
+      "content": "This is my first post!"
+    }
+  ],
+  "users": [
+  ]
+}
+```
+```bash
+openssl rand -base64 32
+// 여기서 찾은 정보를 .env.local NEXTAUTH_SECRET에 넣어준다.
+```
 - .env.local 설정
 ```dotenv
 NEXT_PUBLIC_JSON_SERVER_URL=http://localhost:8000
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=
+
 ```
+
+### 실행방법
+
 - 실행
 ```bash
+  # 의존성 패키지 설치
+  yarn install
   # next.js dev 실행
   yarn dev
   # next.js build
@@ -38,3 +68,5 @@ NEXT_PUBLIC_JSON_SERVER_URL=http://localhost:8000
   ```
 ### 회원가입 실행화면
 ![capture.gif](capture.gif)
+### 로그인 실행화면
+![LoginCapture.gif](LoginCapture.gif)
