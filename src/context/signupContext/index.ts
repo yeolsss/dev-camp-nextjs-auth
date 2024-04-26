@@ -1,1 +1,1 @@
-export { SignupStepContext, SignupStepProvider } from "./SignupStepContext";
+export { useSignupStep, SignupStepProvider } from "./SignupStepContext";

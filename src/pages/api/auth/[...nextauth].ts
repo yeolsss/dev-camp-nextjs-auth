@@ -5,7 +5,7 @@ import { LINK } from "@/constants/link.constants";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_JSON_SERVER_URL;
 
-const handler: NextAuthOptions = NextAuth({
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -49,6 +49,6 @@ const handler: NextAuthOptions = NextAuth({
   pages: {
     signIn: LINK.LOG_IN,
   },
-});
+};
 
-export { handler as GET, handler as POST };
+export default NextAuth(authOptions);

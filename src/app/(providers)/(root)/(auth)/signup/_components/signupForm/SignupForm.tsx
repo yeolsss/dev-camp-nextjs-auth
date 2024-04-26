@@ -3,7 +3,7 @@ import AuthForm from "@/components/authForm";
 import { UseFormReturn } from "react-hook-form";
 import { FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { useSignupStep } from "@/context/signupContext/SignupStepContext";
+import { useSignupStep } from "@/context/signupContext";
 
 interface Props {
   form: UseFormReturn<{ [p: string]: string }, any, undefined>;

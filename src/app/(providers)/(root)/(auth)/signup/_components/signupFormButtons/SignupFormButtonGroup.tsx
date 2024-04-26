@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useSignupStep } from "@/context/signupContext/SignupStepContext";
+import { useSignupStep } from "@/context/signupContext";
 
 function SignupFormButtonGroup() {
   const { step: currentStep, setCurrentStep } = useSignupStep();
