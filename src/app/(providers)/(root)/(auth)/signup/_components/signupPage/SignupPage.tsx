@@ -5,7 +5,7 @@ import { AuthHeaderTitle } from "@/components/header/title";
 import { AnimatePresence, motion } from "framer-motion";
 import SignupForm from "@/app/(providers)/(root)/(auth)/signup/_components/signupForm";
 import useSignUpForm from "@/hooks/signUpForm";
-import { useSignupStep } from "@/context/signupContext/SignupStepContext";
+import { useSignupStep } from "@/context/signupContext";
 
 function SignupPage() {
   const { form, handleOnSubmit } = useSignUpForm();

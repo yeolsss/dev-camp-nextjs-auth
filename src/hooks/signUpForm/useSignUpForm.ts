@@ -20,7 +20,7 @@ import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
-import { useSignupStep } from "@/context/signupContext/SignupStepContext";
+import { useSignupStep } from "@/context/signupContext";
 
 const useSignUpForm = () => {
   const { toast } = useToast();
