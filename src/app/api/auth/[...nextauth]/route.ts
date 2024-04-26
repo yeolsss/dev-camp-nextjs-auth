@@ -15,7 +15,7 @@ const handler: NextAuthOptions = NextAuth({
           type: "email",
           placeholder: "test@gmail.com",
         },
-        password: { label: "비밀번호", type: "password" },
+        password: { label: "비밀번호", type: "passwogrd" },
       },
 
       async authorize(credentials, req) {

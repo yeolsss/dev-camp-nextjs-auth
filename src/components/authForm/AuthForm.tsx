@@ -1,9 +1,9 @@
 "use client";
 
 import { Form } from "@/components/ui/form";
-import FormField from "@/app/(provider)/(layout)/signup/_components/formField/FormField";
 import { SignUpInputConstants } from "@/constants/user.constants";
 import { UseFormReturn } from "react-hook-form";
+import FormField from "@/app/(providers)/(root)/(auth)/signup/_components/formField";
 
 interface Props {
   fields: SignUpInputConstants[];

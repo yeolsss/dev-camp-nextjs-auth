@@ -12,6 +12,10 @@ function AuthLinkGroup() {
   const activeClassName = `bg-accent text-primary ${defaultClassName}`;
   const { data: session } = useSession();
 
+  if (session === undefined) {
+    return null;
+  }
+
   if (session && session.user) {
     return <Button onClick={() => signOut()}>로그아웃</Button>;
   }
