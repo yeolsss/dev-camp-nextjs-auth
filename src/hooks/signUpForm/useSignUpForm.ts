@@ -13,7 +13,6 @@ import {
   AUTH_PHONE,
   AUTH_ROLE,
 } from "@/constants/user.constants";
-import useSignupStepStore from "@/zustand/stores/signupStepStore";
 import { useCallback, useEffect } from "react";
 import { AUTH_FORM_TOTAL_STEP } from "@/constants/authSignupForm.constants";
 import { UserData } from "@/types/auth.type";
@@ -21,6 +20,7 @@ import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import { useSignupStep } from "@/context/signupContext/SignupStepContext";
 
 const useSignUpForm = () => {
   const { toast } = useToast();
@@ -28,8 +28,8 @@ const useSignUpForm = () => {
   const mutation = useMutation({ mutationFn: signUp });
   const router = useRouter();
 
-  const currentStep = useSignupStepStore.use.step();
-  const setCurrentStep = useSignupStepStore.use.setCurrentStep();
+  const { step: currentStep, setCurrentStep } = useSignupStep();
+
   const form = useForm<z.infer<typeof SignupFormSchema>>({
     resolver: zodResolver(SignupFormSchema),
     defaultValues: {
@@ -115,13 +115,13 @@ const useSignUpForm = () => {
         }
       }
     },
-    [currentStep, form, setCurrentStep, mutation],
+    [currentStep, form, setCurrentStep, mutation, toast, router],
   );
   useEffect(() => {
     return () => {
       setCurrentStep(0);
     };
-  }, []);
+  }, [setCurrentStep]);
 
   return { form, handleOnSubmit };
 };

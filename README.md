@@ -9,7 +9,6 @@
 - zod
 - react-hook-form
 - framer-motion
-- zustand
 - next-auth
 - json-server, json-server-auth
 

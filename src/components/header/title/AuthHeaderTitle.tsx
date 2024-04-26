@@ -1,11 +1,11 @@
 "use client";
 
 interface Props {
-  titleName: string;
+  children: React.ReactNode;
 }
 
-function AuthHeaderTitle({ titleName }: Props) {
-  return <h2 className="font-bold text-2xl">{titleName}</h2>;
+function AuthHeaderTitle({ children }: Props) {
+  return <h2 className="font-bold text-2xl">{children}</h2>;
 }
 
 export default AuthHeaderTitle;
